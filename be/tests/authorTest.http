@@ -1,0 +1,34 @@
+# Ritorna tutti gli autori
+GET http://localhost:3030/authors
+####
+
+# aggiungi autore
+POST http://localhost:3030/authors
+Content-Type: application/json
+
+{
+    "name": "",
+    "surname": "",
+    "email": "",
+    "birthday": "",
+    "avatar": ""
+}
+####
+
+# ritorna autore tramite id
+GET http://localhost:3030/authors/65f4c6583f2b5b40d7baff3e
+####
+
+# aggiorna autore tramite id
+PATCH http://localhost:3030/authors/65f4c6583f2b5b40d7baff3e
+Content-Type: application/json
+
+{
+    "avatar": ""
+}
+####
+
+# elimina autore
+DELETE http://localhost:3030/authors/65f4c94b067037710bcba0a6
+
+####
