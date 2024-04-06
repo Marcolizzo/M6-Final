@@ -33,6 +33,8 @@ router.get('/authors/:id', async (req, res) => {
                     message: 'The requested author does not exist!'
                 })
         }
+        res.status(200)
+            .send(author)
     } catch (e) {
         res
             .status(500)
@@ -97,7 +99,7 @@ router.patch('/authors/:id', async (req, res) => {
     }
 })
 
-router.delete('/author/:id', async (req, res) => {
+router.delete('/authors/:id', async (req, res) => {
     const { id } = req.params
     try {
         const author = await AuthorsModel.findByIdAndDelete(id);

@@ -1,0 +1,29 @@
+POST http://localhost:3030/books/create 
+Content-Type: application/json
+
+{
+    "author":"Kevin",
+    "title":"titolo del libro 3",
+    "price": 35.5,
+    "isFeatured": false,
+    "description": "Molto bello"
+}
+
+
+####
+GET http://localhost:3030/books
+####
+
+GET http://localhost:3030/books/6611277af2a28d6fdb33cf4b
+####
+
+PATCH http://localhost:3030/books/update/6611277af2a28d6fdb33cf4b
+Content-Type: application/json
+
+{
+    "description": "Molto bello"
+}
+####
+
+DELETE http://localhost:3030/books/delete/66113139425c0af857afdc22
+####

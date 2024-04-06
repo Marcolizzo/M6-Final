@@ -7,28 +7,28 @@ POST http://localhost:3030/authors
 Content-Type: application/json
 
 {
-    "name": "",
-    "surname": "",
-    "email": "",
-    "birthday": "",
-    "avatar": ""
+    "name": "1",
+    "surname": "2",
+    "email": "3@gmail.com",
+    "birthday": "04.02.2000",
+    "avatar": "bild.png"
 }
 ####
 
 # ritorna autore tramite id
-GET http://localhost:3030/authors/65f4c6583f2b5b40d7baff3e
+GET http://localhost:3030/authors/661127f6f2a28d6fdb33cf52
 ####
 
 # aggiorna autore tramite id
-PATCH http://localhost:3030/authors/65f4c6583f2b5b40d7baff3e
+PATCH http://localhost:3030/authors/661127f6f2a28d6fdb33cf52
 Content-Type: application/json
 
 {
-    "avatar": ""
+    "surname": "Santannera"
 }
 ####
 
 # elimina autore
-DELETE http://localhost:3030/authors/65f4c94b067037710bcba0a6
+DELETE http://localhost:3030/authors/66112886444a3eea7df14346
 
 ####
