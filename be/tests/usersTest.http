@@ -1,0 +1,27 @@
+GET http://localhost:3030/getUsers
+####
+
+GET http://localhost:3030/getUsers/661135af9bcbfe7aaf4fe44b
+####
+
+POST http://localhost:3030/createUser
+Content-Type: application/json
+
+{
+    "firstName": "Luca",
+    "lastName": "Santoro",
+    "email": "luca@gmail.com",
+    "password": "MyPassword123!",
+    "age": 23
+}
+####
+
+PATCH http://localhost:3030/updateUser/661135af9bcbfe7aaf4fe44b
+Content-Type: application/json
+
+{
+    "age": 25
+}
+####
+
+DELETE http://localhost:3030/deleteUser/66113707270962575f48c87e
