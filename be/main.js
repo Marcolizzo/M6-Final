@@ -11,6 +11,7 @@ const authorsRoute = require('./routes/authors');
 const booksRoute = require('./routes/books');
 const usersRoute = require('./routes/users');
 const loginRoute = require('./routes/login');
+const emailRoute = require ('./routes/sendEmail');
 
 
 // creazione porta (questa porta non deve andare in conflitto con quella del fe)
@@ -30,6 +31,7 @@ app.use('/', authorsRoute);
 app.use('/', booksRoute);
 app.use('/', usersRoute);
 app.use('/', loginRoute);
+app.use('/', emailRoute);
 
 
 // connessione al database
