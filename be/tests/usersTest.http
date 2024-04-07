@@ -1,4 +1,5 @@
 GET http://localhost:3030/getUsers
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdE5hbWUiOiJNYXJjbyIsImxhc3ROYW1lIjoiU2FudG9ybyIsImVtYWlsIjoibWFyY29AZ21haWwuY29tIiwiaWF0IjoxNzEyNTA2MDEzLCJleHAiOjE3MTI1OTI0MTN9.Ao88x1Vh6-HWke0jUJXxZEPE9peyz84bpcw_0R6HrpQ
 ####
 
 GET http://localhost:3030/getUsers/661135af9bcbfe7aaf4fe44b

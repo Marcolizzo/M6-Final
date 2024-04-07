@@ -2,9 +2,10 @@ const express = require("express");
 const books = express.Router();
 const BooksModel = require("../models/books")
 const verified = require('../middelwares/verifyToken');
+const UserModel = require('../models/users');
 const multer = require("multer");
 const { cloudStorage } = require('../config/cloudinaryConfig');
-const {internalStorage} = require('../config/internalStorageConfig');
+const { internalStorage } = require('../config/internalStorageConfig');
 require("dotenv").config()
 
 const upload = multer({ storage: internalStorage })
@@ -40,9 +41,10 @@ books.post(`/books/uploadImg`,
     })
 
 books.get("/books", verified, async (req, res) => {
-    const { page = 1, pageSize = 24 } = req.query;
+    const { page = 1, pageSize = 10 } = req.query;
     try {
         const books = await BooksModel.find()
+            .populate('author')         /*Popolare l'autore del libro (Referencing)*/
             .limit(pageSize)
             .skip((page - 1) * pageSize)
             .sort({ pubDate: -1 });
@@ -90,7 +92,16 @@ books.get('/books/:id', async (req, res) => {
 })
 
 books.post(`/books/create`, async (req, res) => {
-    const newBook = new BooksModel(req.body)
+    const user = await UserModel.findOne({ _id: req.body.author })
+    const newBook = new BooksModel({
+        author: user._id,
+        title: req.body.title,
+        editor: req.body.editor,
+        cover: req.body.cover,
+        price: Number(req.body.price),
+        description: req.body.description,
+        isFeatured: req.body.isFeatured
+    })
 
     try {
         await newBook.save()

@@ -1,9 +1,10 @@
 const mongoose = require ("mongoose");
 
 const BookSchema = new mongoose.Schema ({
+    // referencing dell'autore
     author:{
-        type: String,
-        required: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'userModel'
     },
     title: {
         type: String,
