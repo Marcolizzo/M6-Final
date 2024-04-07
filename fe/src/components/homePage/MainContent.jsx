@@ -7,7 +7,7 @@ import AddBookModal from "../addBookModal/AddBookModal";
 
 const MainContent = () => {
     const session = JSON.parse(localStorage.getItem('auth'))
-    const isAuthenticated = useSession();
+    // const isAuthenticated = useSession();
 
     const [isLoading, setIsLoading] = useState(false)
     const [error, setError] = useState('')
@@ -45,7 +45,7 @@ const MainContent = () => {
                         message="Oops! Qualcosa è andato storto durante il caricamento dei dati"
                     />
                 )}
-                {isAuthenticated && !isLoading && !error && (
+                {/*isAuthenticated &&*/ !isLoading && !error && (
                     books.books && books.books.map((book) => (
                         <div key={book._id} className="col-12 col-md-6 col-lg-4 col-xl-3 mb-3">
                             <BookCard

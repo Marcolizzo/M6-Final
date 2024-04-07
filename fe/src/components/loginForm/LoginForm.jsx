@@ -11,7 +11,7 @@ const LoginForm = ({ toggleForm }) => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const response = await client.post('/login', formData)
-        console.log(response.token)
+        // console.log(response.token)
         if (response.token) {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {

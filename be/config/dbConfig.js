@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 //connessione del database
-const connectDB = () => {
+const connectToDatabase = () => {
     mongoose.connect(process.env.MONGODB_URL);
     // metto in ascolto i due eventi che mi interessano (error e open)
     const db = mongoose.connection;
@@ -11,4 +11,4 @@ const connectDB = () => {
     });
 }
 
-module.exports = connectDB;
+module.exports = connectToDatabase;

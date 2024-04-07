@@ -1,8 +1,9 @@
 const express = require("express");
 const books = express.Router();
 const BooksModel = require("../models/books")
+const verified = require('../middelwares/verifyToken');
 
-books.get("/books", async (req, res) => {
+books.get("/books", verified, async (req, res) => {
     const { page = 1, pageSize = 24 } = req.query;
     try {
         const books = await BooksModel.find()

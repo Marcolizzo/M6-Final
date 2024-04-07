@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const UserModel = require("../models/users");
-// const validateUserBody = require("../middlewares/validateUserBody");
-// const bcrypt = require ("bcrypt");
+const validateUserBody = require("../middelwares/validateUserBody");
+const verified = require('../middelwares/verifyToken');
+const bcrypt = require ("bcrypt");
 
 
-router.get("/getUsers", async (req, res)=>{
+router.get("/getUsers", verified, async (req, res)=>{
     const { page = 1, pageSize = 5} = req.query;
     try{
     const users = await UserModel.find()  
@@ -55,17 +56,16 @@ router.get("/getUsers/:id", async (req, res)=>{
     }
 })
 
-router.post(`/createUser`, async (req, res)=>{
-    //                  ^validateUserBody
-    // const salt = await bcrypt.genSalt(10)
-    // const hashedPassword = await bcrypt.hash(req.body.password, salt)
+router.post(`/createUser`, validateUserBody, async (req, res)=>{
+    const salt = await bcrypt.genSalt(10)
+    const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
     
     const newUser = new UserModel({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        password: req.body.password/*hashedPassword*/,
+        password: hashedPassword,
         age: Number(req.body.age)
     });
     try{

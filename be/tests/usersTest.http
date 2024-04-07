@@ -8,11 +8,11 @@ POST http://localhost:3030/createUser
 Content-Type: application/json
 
 {
-    "firstName": "Luca",
+    "firstName": "Marco",
     "lastName": "Santoro",
-    "email": "luca@gmail.com",
+    "email": "marco@gmail.com",
     "password": "MyPassword123!",
-    "age": 23
+    "age": 25
 }
 ####
 
@@ -25,3 +25,14 @@ Content-Type: application/json
 ####
 
 DELETE http://localhost:3030/deleteUser/66113707270962575f48c87e
+####
+
+# Test Login
+POST http://localhost:3030/login
+Content-Type: application/json
+
+{
+    "email": "marco@gmail.com",
+    "password": "MyPassword123!"
+}
+####
