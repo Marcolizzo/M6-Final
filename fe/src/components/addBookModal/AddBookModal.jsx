@@ -4,14 +4,15 @@ import Modal from 'react-bootstrap/Modal';
 const AddBookModal = () => {
     const [file, setFile] = useState(null)
     const [formData, setFormData] = useState({})
-    console.log(file)
-    console.log(formData)
+    const [isFeatured, setIsFeatured] = useState('');
 
     const onChangeHandleFile = (e) => {
         setFile(e.target.files[0])
     }
 
     const onChangeHandleInput = (e) => {
+        setIsFeatured(e.target.value);
+
         const { name, value } = e.target
         setFormData({
             ...formData,
@@ -113,8 +114,9 @@ const AddBookModal = () => {
                         <select
                             onChange={onChangeHandleInput}
                             name="isFeatured"
+                            value= {isFeatured}
                         >
-                            <option selected disabled>Scegli opzione Featured</option>
+                            <option value="" disabled>Scegli opzione Featured</option>
                             <option value='true'>Featured</option>
                             <option value='false'>Not Featured</option>
                         </select>
