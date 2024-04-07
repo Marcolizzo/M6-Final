@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 
 const SignupForm = ({ toggleForm }) => {
     const [signupFormData, setSignupFormData] = useState({})
-    console.log(signupFormData)
 
     const onChangeInput = (e) => {
         const { name, value } = e.target

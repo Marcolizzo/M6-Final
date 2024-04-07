@@ -2,6 +2,36 @@ const express = require("express");
 const books = express.Router();
 const BooksModel = require("../models/books")
 const verified = require('../middelwares/verifyToken');
+const multer = require("multer");
+
+//filesystem interno per archivio immagini interno
+const internalStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "uploads")
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() + 1E9);
+        const fileExtension = file.originalname.split(".").pop()
+        // cb(null, `${file.fieldname}-${new Date().toISOString()}.${fileExtension}`)
+        cb(null, `${file.fieldname}-${uniqueSuffix}.${fileExtension}`)
+    }
+})
+
+const upload = multer({ storage: internalStorage })
+// const cloudUpload = multer({ storage: cloudStorage })
+
+books.post(`/books/uploadImg`, upload.single("uploadImg"), async (req, res) => {
+    const url = req.protocol + "://" + req.get("host")
+    try {
+      const imageUrl = req.file.filename;
+      res.status(200).json({ source: `${url}/uploads/${imageUrl}` });
+    } catch (e) {
+      res.status(500).send({
+        statusCode: 500,
+        message: "File Upload Error",
+      })
+    }
+  })
 
 books.get("/books", verified, async (req, res) => {
     const { page = 1, pageSize = 24 } = req.query;

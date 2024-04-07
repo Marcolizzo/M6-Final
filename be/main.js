@@ -3,6 +3,7 @@ const express = require('express');
 const connectToDatabase = require('./config/dbConfig');
 const cors = require('cors');
 const logger = require('./middelwares/logger');
+const path = require('path')
 
 
 //import delle routes
@@ -20,6 +21,9 @@ const app = express();
 //middleware
 app.use(cors())
 app.use(express.json());
+
+// serviamo cartella uploads con express.static middleware
+app.use('/uploads', express.static(path.join(__dirname, './uploads')));
 
 app.use(logger);
 app.use('/', authorsRoute);
