@@ -1,11 +1,13 @@
-import React, {useState} from 'react';
-import AxiosClient from "../../client/client";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from 'react'
+import AxiosClient from '../../client/client'
+import { useNavigate } from 'react-router-dom'
+import { LogoGithub } from 'react-ionicons'
+
 
 const LoginForm = ({ toggleForm }) => {
     const [formData, setFormData] = useState({})
 
-    const client = new AxiosClient();
+    const client = new AxiosClient()
     const navigate = useNavigate()
 
     const onSubmit = async (e) => {
@@ -16,22 +18,34 @@ const LoginForm = ({ toggleForm }) => {
             localStorage.setItem('auth', JSON.stringify(response.token))
             setTimeout(() => {
                 navigate('/home')
-            },1500)
+            }, 1500)
         }
     }
 
     const onChangeInput = (e) => {
-        const {name, value} = e.target
+        const { name, value } = e.target
         setFormData({
             ...formData,
-            [name]: value
+            [name]: value,
         })
     }
 
+    const handleLoginWithGithub = () => {
+        window.location.href = `${process.env.REACT_APP_SERVER_BASE_URL}/auth/github`;
+      };
+      const [showError, setShowError] = useState(true);
+    
+      const handleCloseError = () => {
+        setShowError(false);
+      };
+      const alertStyle = {
+        position: "absolute",
+        top: "550px",
+        left: "45px",
+      };
+
     return (
-        <form
-            onSubmit={onSubmit}
-            className="card-body cardbody-color p-lg-5">
+        <form onSubmit={onSubmit} className="card-body cardbody-color p-lg-5">
             <div className="text-center">
                 <img
                     src="https://picsum.photos/340/340"
@@ -81,8 +95,19 @@ const LoginForm = ({ toggleForm }) => {
                     Registrati ora!
                 </a>
             </div>
-        </form>
-    );
-};
 
-export default LoginForm;
+            <div className="text-center">
+                <button
+                    onClick={handleLoginWithGithub}
+                    type="button" // No form submission here
+                    className="btn btn-dark px-4 mb-3 w-100"
+                >
+                    <LogoGithub color={'#ffffff'} className="pe-2"/>
+                    Accedi con GitHub
+                </button>
+            </div>
+        </form>
+    )
+}
+
+export default LoginForm
