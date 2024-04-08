@@ -13,10 +13,12 @@ const AddBookModal = () => {
     const onChangeHandleInput = (e) => {
         setIsFeatured(e.target.value);
 
+
         const { name, value } = e.target
+        const checkValues = name === "price" ? Number(value) : value
         setFormData({
             ...formData,
-            [name]: value,
+            [name]: checkValues,
         })
     }
 
