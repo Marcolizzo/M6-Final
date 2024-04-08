@@ -100,7 +100,8 @@ books.post(`/books/create`, async (req, res) => {
         cover: req.body.cover,
         price: Number(req.body.price),
         description: req.body.description,
-        isFeatured: req.body.isFeatured
+        isFeatured: req.body.isFeatured,
+        pubDate: new Date(req.body.pubDate)
     })
 
     try {
