@@ -36,7 +36,7 @@ passport.use(
     })
 )
 github.get(`/auth/github`, passport.authenticate(`github`,{scope:[`user:email`]}), (req, res)=>{
-    const redirectUrl = `http://localhost:3000/success?user=${encodeURIComponent(JSON.stringify(req.user))}` 
+    const redirectUrl = `${process.env.FE_URL}/success?user=${encodeURIComponent(JSON.stringify(req.user))}` 
     res.redirect(redirectUrl);
 })
 
@@ -45,12 +45,12 @@ github.get(`/auth/github/callback`, passport.authenticate(`github`, {failureRedi
     console.log(`USER LOG`, user)
 
     const token = jwt.sign(user, process.env.SECRET_KEY)
-    const redirectUrl = `http://localhost:3000/success?token=${encodeURIComponent(token)}`
+    const redirectUrl = `${process.env.FE_URL}/success?token=${encodeURIComponent(token)}`
     res.redirect(redirectUrl)
 })
 
 github.get(`/success`, (req, res)=>{
-   res.redirect(`http://localhost:3000/home`)
+   res.redirect(`${process.env.FE_URL}/home`)
 })
 
 module.exports = github;
