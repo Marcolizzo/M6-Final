@@ -15,7 +15,11 @@ const AddBookModal = () => {
 
 
         const { name, value } = e.target
-        const checkValues = name === "price" ? Number(value) : value
+        const checkValues = name === "price" 
+            ? Number(value) 
+            : name === "pubDate" 
+            ? new Date(value) 
+            : value 
         setFormData({
             ...formData,
             [name]: checkValues,
