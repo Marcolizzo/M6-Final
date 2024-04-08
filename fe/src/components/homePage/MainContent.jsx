@@ -31,7 +31,7 @@ const MainContent = () => {
         setIsLoading(true)
         try {
             const response = await fetch(
-                `http://localhost:3030/books?page=${page}&pageSize=${pageSize}`,
+                `${process.env.REACT_APP_SERVER_BASE_URL}/books?page=${page}&pageSize=${pageSize}`,
                 {
                     method: 'GET',
                     headers: {
