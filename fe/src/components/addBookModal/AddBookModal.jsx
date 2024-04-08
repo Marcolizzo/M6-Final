@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
+import useSession from '../../hooks/useSession';
 
 const AddBookModal = () => {
     const [file, setFile] = useState(null)
     const [formData, setFormData] = useState({})
     const [isFeatured, setIsFeatured] = useState('');
+
+    const session = useSession();
+    console.log(session)
 
     const onChangeHandleFile = (e) => {
         setFile(e.target.files[0])
